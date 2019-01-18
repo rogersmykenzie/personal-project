@@ -1,0 +1,32 @@
+.register-container-1 {
+  width: 100vw;
+  height: 100vh;
+  background: #442B48;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-paper {
+  width: 30vw;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-text {
+  margin-bottom: 10vh;
+}
+
+.btn-register {
+  display: flex;
+  align-items: center;
+}
+
+.profile-picture {
+  margin-left: 6vw;
+}
+
+/*# sourceMappingURL=Register.css.map */

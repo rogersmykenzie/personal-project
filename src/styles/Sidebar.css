@@ -1,0 +1,9 @@
+.sidebar {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  aling-items: center;
+}
+
+/*# sourceMappingURL=Sidebar.css.map */
