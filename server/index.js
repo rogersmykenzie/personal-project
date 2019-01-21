@@ -4,8 +4,9 @@ const { json } = require('body-parser');
 const session = require('express-session')
 
 const {registerUser, loginUser, getProfile, 
-        postVideoInfo, getUserID, getNumVideos,
-        getUserVideos, getVideoRankings, logoutUser} = require('./controllers/authController');
+    postVideoInfo, getUserID, getNumVideos,
+    getUserVideos, getVideoRankings, logoutUser,
+    getRandomVideos} = require('./controllers/authController');
 // const { registerUser } = require('./controllers/authController');
 
 const PORT = process.env.SERVER_PORT || 3005;
@@ -36,6 +37,8 @@ app.get('/api/videos/:user', getUserVideos)
 app.get('/api/rankings', getVideoRankings)
 //LOGOUT
 app.get('/auth/logout', logoutUser)
+//GET RANDOM VIDEO
+app.get('/api/video/random', getRandomVideos)
 
 
 app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));

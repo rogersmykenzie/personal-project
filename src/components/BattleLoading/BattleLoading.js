@@ -1,11 +1,22 @@
 import React, {Component} from 'react';
-import {TweenMax, Elastic, TimelineMax} from 'gsap'
+import {Elastic, TimelineMax} from 'gsap'
+import axios from 'axios'
+import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
 
+import {changeVideo1, changeVideo2} from '../../ducks/reducer';
 import '../../styles/BattleLoading.css'
 
-export default class BattleLoading extends Component {
+class BattleLoading extends Component {
+    constructor() {
+        super();
+        this.state = {
+            redirectToBattle: false
+        }
+    }
     componentDidMount() {
-        //try using a while loop with the redirect toggle as the conditional
+        this.setState({redirectToBattle: false})
+        // try using a while loop with the redirect toggle as the conditional
         // TweenMax.to('.shape-one', 2, {rotation: 720})
         // TweenMax.to('.shape-two', 2, {rotation: 720})
         // TweenMax.to('.shape-three', 2, {rotation: 720})
@@ -18,20 +29,34 @@ export default class BattleLoading extends Component {
         // TweenMax.to('.shape-two', 1, {rotation: 720, delay: 3});
         // TweenMax.to('.shape-three', 1, {rotation: 720, delay: 3});
         var tl = new TimelineMax({repeat: -1});
-            tl.to('.shape-one', .5, {height: 200, ease: Elastic.easeOut.config(.5, .1)})
-            tl.to('.shape-two', .5, {height: 200, ease: Elastic.easeOut.config(.5, .1)})
-            tl.to('.shape-three', .5, {height: 200, ease: Elastic.easeOut.config(.5, .1)})
-            tl.to('.shape-one', .5, {height: 100})
-            tl.to('.shape-two', .5, {height: 100})
-            tl.to('.shape-three', .5, {height: 100})
+        tl.to('.shape-one', .3, {height: 200, ease: Elastic.easeOut.config(.5, .1)})
+        tl.to('.shape-two', .3,{height: 200, ease: Elastic.easeOut.config(.5, .1)})
+        tl.to('.shape-three', .3, {height: 200, ease: Elastic.easeOut.config(.5, .1)})
+        tl.to('.shape-one', .2, {height: 100})
+        tl.to('.shape-two', .2, {height: 100})
+        tl.to('.shape-three', .2, {height: 100})
+        console.log('test')
+        axios.get('/api/video/random')
+        .then(response => {
+            this.props.changeVideo1(response.data.video1);
+            this.props.changeVideo2(response.data.video2)
+            setTimeout(() => this.setState({redirectToBattle: true}),1000);
+        }).catch(err => console.log(err));
     }
+
+
     render() {
         return(
-            <div className='loading-container'>
+            <div className='loading-container' draggable>
                 <div className='shape-one'></div>
                 <div className='shape-two'></div>
                 <div className='shape-three'></div>
+                {this.state.redirectToBattle ? <Redirect to='/battle' /> : null}
             </div>
         )
     }
 }
+
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps, {changeVideo1, changeVideo2})(BattleLoading)

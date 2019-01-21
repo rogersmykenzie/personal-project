@@ -97,10 +97,9 @@ module.exports = {
     postVideoInfo: (req, res, next) => {
         firebase.database().ref().once('value').then(response => {
             let numVideos = response.val().videos.length
-            // console.log(response.val())
             firebase.database().ref(`videos/${numVideos}`).set({
                 title: req.body.title,
-                videoID: 1,
+                videoID: numVideos,
                 reference: req.body.reference,
                 interactions: 0,
                 thumbnailID: req.body.thumbnailID,
@@ -176,5 +175,19 @@ module.exports = {
     logoutUser: (req, res, next) => {
         req.session.destroy();
         res.sendStatus(200);
+    },
+
+
+
+    getRandomVideos: (req, res, next) => {
+        firebase.database().ref('videos').once('value').then(response => {
+            let length = response.val().length;
+            let randomVideoIndex1 = Math.floor(((Math.random() * 10) % (length-1)) + 1)
+            let randomVideoIndex2 = randomVideoIndex1;
+            while(randomVideoIndex2 === randomVideoIndex1) {
+                randomVideoIndex2 = Math.floor(((Math.random() * 10) % (length-1)) + 1)
+            }
+            res.status(200).json({video1: response.val()[randomVideoIndex1], video2: response.val()[randomVideoIndex2]})
+        })
     }
 }

@@ -10,6 +10,8 @@ const initialState = {
     loginUsername: '',
     loginPassword: '',
     profilePicture: '',
+    video1: {},
+    video2: {}
 }
 
 
@@ -23,8 +25,22 @@ const CHANGE_EMAIL = 'CHANGE_EMAIL';
 const CHANGE_LOGIN_USERNAME = 'CHANGE_LOGIN_USERNAME'
 const CHANGE_LOGIN_PASSWORD = 'CHANGE_LOGIN_PASSWORD'
 const CHANGE_PROFILE_PICTURE = 'CHANGE_PROFILE_PICTURE'
+const CHANGE_VIDEO_1 = 'CHANGE_VIDEO_1';
+const CHANGE_VIDEO_2 = 'CHANGE_VIDEO_2';
 
 
+export function changeVideo1(video) {
+    return {
+        type: CHANGE_VIDEO_1,
+        payload: video
+    }
+}
+export function changeVideo2(video) {
+    return {
+        type: CHANGE_VIDEO_2,
+        payload: video
+    }
+}
 export function changeProfilePicture(change) {
     return {
         type: CHANGE_PROFILE_PICTURE,
@@ -84,6 +100,16 @@ export function changeEmail(change) {
 
 export default function reducer(state=initialState, action) {
     switch(action.type) {
+        case CHANGE_VIDEO_1:
+        return {
+            ...state,
+            video1: action.payload
+        }
+        case CHANGE_VIDEO_2:
+        return {
+            ...state,
+            video2: action.payload
+        }
         case CHANGE_PROFILE_PICTURE:
         return {
             ...state,

@@ -64,7 +64,7 @@ export default class Profile extends Component {
             <div><br /><br /><br /><br />
                 <Paper className='main-head-container'>
                     <Sidebar />
-                    <img className='profile-picture-src' src={'https://firebasestorage.googleapis.com/v0/b/personal-project-88145.appspot.com/o/images%2Fprofile%2Fmrogers?alt=media&token=6e160175-84e5-4441-a9c0-08156b679191'} />
+                    <img className='profile-picture-src' src={this.state.profilePicture} />
                     <Paper className='profile-head-bio'>
                         <Typography variant='h6'>
                             <p className='bio-text'>Bio: {this.state.bio}</p>

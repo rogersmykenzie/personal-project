@@ -30,9 +30,9 @@
     transform: rotate(360deg);
   }
 }
-body {
+/* body {
   background-image: url('./assets//fire-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: -400px
-}
+} */

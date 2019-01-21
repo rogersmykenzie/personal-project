@@ -20,7 +20,6 @@ export default class NavBar extends Component {
             console.log('here')
             axios.get('/auth/user')
             .then(response => {
-                console.log('updated')
                 this.setState({profilePicture: response.data.profilePicture})
             })
         }
@@ -39,9 +38,9 @@ export default class NavBar extends Component {
                                     className='prof-pic'/> 
                                 : 'Profile'}</li>
                             </Link>
-                                <li className='nav-heading'>Categories</li>
+                                <li className='nav-heading'>Leaderboard</li>
                                 <li className='nav-heading'>Search</li>
-                                <li className='nav-heading'>BATTLE</li>
+                                <li className='nav-heading'><Link to='/battle/loading'>BATTLE</Link></li>
                             </ul>
                         </Typography>
                     </Toolbar>

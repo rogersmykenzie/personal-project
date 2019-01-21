@@ -1,0 +1,47 @@
+.behind-video {
+  justify-content: center;
+  align-items: center;
+  background: black;
+  height: 50vh;
+}
+
+.video-navigator {
+  position: relative;
+  width: 100%;
+  bottom: 6.8vh;
+  height: 6.8vh;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+input[type=range] {
+  position: relative;
+  width: 50%;
+}
+
+.slider-container-2 {
+  display: none;
+  width: 200px;
+  animation: slide .5s linear;
+}
+
+.slider-container:hover > div.slider-container-2 {
+  display: block;
+}
+
+.slider-container {
+  display: flex;
+}
+
+@keyframes slide {
+  from {
+    width: 0px
+  }
+  to {
+    width: 200px
+  }
+}
+
+/*# sourceMappingURL=VideoPlayer.css.map */
