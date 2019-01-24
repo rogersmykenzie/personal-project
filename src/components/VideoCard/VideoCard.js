@@ -7,7 +7,7 @@ class VideoCard extends Component {
     render() {
         return (
             <div className='video-card'>
-                <VideoPlayer video={this.props.video} first={this.props.first} />
+                <VideoPlayer video={this.props.video} first={this.props.first} voteable={this.props.votable}/>
             </div>
         )
     }

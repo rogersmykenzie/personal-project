@@ -1,0 +1,27 @@
+.search-page {
+  border: 1px solid red;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.search-bar {
+  width: 40vw;
+  font-size: 6vh;
+}
+
+.search-button {
+  margin-top: 2vh;
+  width: 10vw;
+  height: 4vh;
+  font-size: 3vh;
+}
+
+.search-bar:focus {
+  outline: none;
+}
+
+/*# sourceMappingURL=Search.css.map */

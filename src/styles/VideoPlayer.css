@@ -18,13 +18,11 @@
 
 input[type=range] {
   position: relative;
-  width: 50%;
 }
 
 .slider-container-2 {
   display: none;
-  width: 200px;
-  animation: slide .5s linear;
+  border: 1px solid red;
 }
 
 .slider-container:hover > div.slider-container-2 {
@@ -35,13 +33,52 @@ input[type=range] {
   display: flex;
 }
 
-@keyframes slide {
+.volume-up-button, .volume-down-button, .mute-button, .unmute-button, .play-button, .pause-button, .rewind-button, .forward-button {
+  background: transparent;
+  border: none;
+  height: 100%;
+  width: 4vw;
+  transform: scale(1);
+}
+
+.pause-button, .play-button {
+  height: 6.8vh
+}
+
+.fa-volume-up, .fa-volume-down, .fa-volume-mute, .fa-volume-off, .fa-play, .fa-pause, .fa-redo-alt, .fa-undo-alt {
+  color: white;
+}
+
+.volume-up-button:active, .volume-down-button:active, .mute-button:active, .unmute-button:active, .play-button:active, .pause-button:active, .rewind-button:active, .forward-button:active {
+  transform: scale(1);
+  animation: onClick 1s linear
+}
+button{
+  outline: none
+}
+@keyframes onClick {
   from {
-    width: 0px
+    transform: scale(.8);
   }
   to {
-    width: 200px
+    transform: scale(1);
   }
 }
+.button {
+  outline: none
+}
+.button:active {
+  transform: scale(1);
+  animation: onClick 1s linear
+}
+@keyframes onClick {
+  from {
+    transform: scale(.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 
 /*# sourceMappingURL=VideoPlayer.css.map */

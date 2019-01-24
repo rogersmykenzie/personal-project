@@ -11,6 +11,10 @@ import ProfileRanking from './components/ProfileRanking/ProfileRanking'
 import ProfileVideos from './components/ProfileVideos/ProfileVideos'
 import Battle from './components/Battle/Battle';
 import BattleLoading from './components/BattleLoading/BattleLoading'
+import Leaderboard from './components/Leaderboard/Leaderboard';
+import Search from './components/Search/Search'
+import SearchResults from './components/SearchResults/SearchResults'
+import SoloPlayer from './components/SoloPlayer/SoloPlayer'
 
 export default (
         <Switch>
@@ -22,6 +26,10 @@ export default (
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
             <Route path='/battle/loading' component={BattleLoading} />
+            <Route path='/leaderboard' component={Leaderboard} />
+            <Route path='/search/results' component={SearchResults} />
+            <Route path='/video/:id' component={SoloPlayer} />
+            <Route exact path='/search' component={Search} />
             <Route exact path='/battle' component={Battle} />
             <Route exact path='/' component={Home} />
         </Switch>

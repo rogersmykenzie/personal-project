@@ -1,0 +1,32 @@
+.search-results-thumbnail {
+  width: 200px;
+  height: auto;
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+.search-result-capsule {
+  display: flex;
+  width: 100vw;
+  flex-wrap: wrap;
+}
+
+.search-result-info {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 30vw;
+  margin-left: 9vw;
+  margin-right: 9vw;
+  border: 1px solid yellow;
+}
+
+.search-results-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  border: 1px solid red;
+}
+
+/*# sourceMappingURL=SearchResults.css.map */

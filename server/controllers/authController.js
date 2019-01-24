@@ -140,7 +140,10 @@ module.exports = {
                 if(+response.val()[i].userID === +req.params.user) {
                     userVideos.push({
                         thumbnail: response.val()[i].thumbnailID,
-                        video: response.val()[i].reference
+                        video: response.val()[i].reference,
+                        videoID: response.val()[i].videoID,
+                        votes: response.val()[i].votes,
+                        title: response.val()[i].title
                     })
                 }
             }
@@ -161,9 +164,9 @@ module.exports = {
             videos.splice(0, 1);
             videos.sort((a, b) => {
                 if(a.votes < b.votes)
-                    return -1
-                else if(a.votes > b.votes)
                     return 1
+                else if(a.votes > b.votes)
+                    return -1
                 return 0
             })
             res.status(200).json(videos);
@@ -188,6 +191,88 @@ module.exports = {
                 randomVideoIndex2 = Math.floor(((Math.random() * 10) % (length-1)) + 1)
             }
             res.status(200).json({video1: response.val()[randomVideoIndex1], video2: response.val()[randomVideoIndex2]})
+        })
+    },
+
+
+
+    videoVote: (req, res, next) => {
+        firebase.database().ref(`videos`).once('value').then(response => {
+            let numVotes = response.val()[+req.body.videoID].votes;
+            firebase.database().ref('videos').child(+req.body.videoID).update({votes: numVotes + 1}).then(response => {
+                res.status(200).json('hehe')
+            })
+        })
+    },
+    //JOIN STATEMENT ^^
+
+
+
+    searchVideos: (req, res, next) => {
+        let arr = req.query.search.split(' ');
+        console.log(arr);
+        let indexOfVideosWhoseTagsMatchTheQuery = [];
+        firebase.database().ref('videos').once('value').then(response => {
+            for(let i = 1; i < response.val().length; i++) {
+                let tags = response.val()[i].tags.split(',').map((val, i, arr) => {
+                    return val.toLowerCase().trim();
+                })
+                console.log(tags)
+                for(let c = 0; c < arr.length; c++) {
+                    if(tags.includes(arr[c].toLowerCase())) {
+                        console.log('here')
+                        indexOfVideosWhoseTagsMatchTheQuery.push(i);
+                    }
+                }
+            }
+            let jsonArr = []
+            for(let i = 0; i < indexOfVideosWhoseTagsMatchTheQuery.length; i++) {
+                jsonArr.push(response.val()[indexOfVideosWhoseTagsMatchTheQuery[i]]);
+            }
+            res.status(200).json(jsonArr);
+        })
+    },
+
+
+
+    getUsersBasedOnVideos: (req, res, next) => {
+        firebase.database().ref('users').once('value').then(response => {
+            let arr = response.val().slice().splice(1);
+            let orderedUsers = [];
+            console.log(req.body)
+            for(let i = 0; i < req.body.videos.length; i++) {
+                let element = req.body.videos[i];
+                let index = arr.findIndex((val, i, arr) => val.userID === element.userID)
+                orderedUsers.push(arr[index]);
+            }
+            res.status(200).json(orderedUsers);
+        })
+    },
+
+
+
+    getSingleVideo: (req, res, next) => {
+        firebase.database().ref('videos').once('value').then(response => {
+            let arr = response.val().slice().splice(1);
+            let index = arr.findIndex((val, i, arr) => +val.videoID === +req.params.id)
+            res.status(200).json(arr[index]);
+        })
+    },
+
+
+
+    getTotalVideoVotes: (req, res, next) => {
+        firebase.database().ref('videos').once('value').then(response => {
+            let votes = response.val().splice(1).reduce((acc, elem) => acc + elem.votes, 0)
+            res.status(200).json(votes);
+        })
+    },
+
+
+
+    deleteVideo: (req, res, next) => {
+        firebase.database().ref(`videos/${req.params.id}`).remove().then(response => {
+            console.log(response.val())
         })
     }
 }

@@ -3,9 +3,12 @@ import axios from 'axios';
 import {Paper, Typography, Input, Button, TextField} from '@material-ui/core';
 import '../../styles/Profile.css'
 import {storage} from '../../firebase'
+import {connect} from 'react-redux';
 import Sidebar from '../ProfileSidebar/ProfileSidebar'
+import {Redirect} from 'react-router-dom'
+import {changeProfilePicture} from '../../ducks/reducer'
 
-export default class Profile extends Component {
+class Profile extends Component {
     constructor() {
         super();
         this.state = {
@@ -16,7 +19,8 @@ export default class Profile extends Component {
             videoTitle: '',
             thumbnail: null,
             id: -1,
-            tags: ''
+            tags: '',
+            redirect: false
         }
     }
 
@@ -59,10 +63,17 @@ export default class Profile extends Component {
         })
     }
     
+    handleLogout = () => {
+        this.props.changeProfilePicture('')
+        axios.delete('/auth/logout').then(() => {
+            this.setState({redirect: true})
+        })
+    }
+    
     render() {
         return(
             <div><br /><br /><br /><br />
-                <Paper className='main-head-container'>
+                <div className='main-head-container'>
                     <Sidebar />
                     <img className='profile-picture-src' src={this.state.profilePicture} />
                     <Paper className='profile-head-bio'>
@@ -73,10 +84,17 @@ export default class Profile extends Component {
                             <TextField variant='outlined' placeholder='Video Name' onChange={e => this.setState({videoTitle: e.target.value})} />
                             <TextField variant='outlined' placeholder='Tags' onChange={e => this.setState({tags: e.target.value})} />
                             <Button color='primary' variant='contained' onClick={() => this.handleFile()}>Upload</Button>
+                            <br />
+                            <button onClick={() => this.handleLogout()}>Logout</button>
+                            {this.state.redirect ? <Redirect to='/login' /> : null}
                         </Typography>
                     </Paper>
-                </Paper>
+                </div>
             </div>
         )
     }
 }
+
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps, {changeProfilePicture})(Profile)

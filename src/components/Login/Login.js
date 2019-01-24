@@ -27,6 +27,7 @@ class Login extends Component {
         }
         axios.post('/auth/login', obj)
         .then(response => {
+            this.props.changeProfilePicture(response.data.profilePicture)
             if(response.status === 200) {
                 this.setState({redirect: true})
             }
@@ -49,16 +50,16 @@ class Login extends Component {
                         </TextField>
                         <br />
                         <br />
-                        <TextField type='password' label='Password' variant='outlined' onChange={e => this.props.changeLoginPassword(e.target.value)} >
+                        <TextField type='password' label='Password' variant='outlined' onChange={e => this.props.changeLoginPassword(e.target.value)} onKeyPress={e => e.key==='Enter' ? this.handleLogin() : null} >
 
                         </TextField>
                         <br />
-                        <Button variant='contained' color='secondary' onClick={() => console.log('working')} onClick={() => this.handleLogin()}>
+                        <Button variant='contained' color='secondary' onClick={() => this.handleLogin()}>
                             Login
                         </Button>
                         <br />
                         <Typography>
-                            Don't have an account? <Link to='/register'>Register</Link> today.
+                            Don't have an account? <Link to='/register'>Sign Up</Link> today.
                         </Typography>
                     </Paper>
                     {this.state.redirect ? <Redirect to='/' /> : null}
@@ -70,4 +71,4 @@ class Login extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, {changeLoginPassword, changeLoginUsername})(Login)
+export default connect(mapStateToProps, {changeLoginPassword, changeLoginUsername, changeProfilePicture})(Login)

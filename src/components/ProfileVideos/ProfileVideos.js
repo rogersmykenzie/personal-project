@@ -4,14 +4,15 @@ import Sidebar from '../ProfileSidebar/ProfileSidebar'
 import {Paper} from '@material-ui/core'
 import axios from 'axios';
 import '../../styles/ProfileVideos.css';
-import {storage} from '../../firebase'
-import { POINT_CONVERSION_COMPRESSED } from 'constants';
+import {Link} from 'react-router-dom'
+import ProfileVideoSlot from '../ProfileVideoSlot/ProfileVideoSlot'
 
 export default class ProfileVideos extends Component {
     constructor() {
         super()
         this.state = {
-            userVideos: []
+            userVideos: [],
+            toggleDeletePrompt: false
         }
     }
 
@@ -29,16 +30,35 @@ export default class ProfileVideos extends Component {
         let videos = 'You have not uploaded any videos yet, grasshopper';
         if(this.state.userVideos.length > 0) {
             videos = this.state.userVideos.map((val, i ,arr) => {
-                return <img className='profile-videos-thumbnail' src={val.thumbnail} />
+                console.log(val);
+                return <ProfileVideoSlot thumbnail={val.thumbnail} videoID={val.videoID} />
             })
         }
         return(
-            <Paper className='profile-video-container'> 
+            <div className='profile-video-container'> 
                 <Sidebar />
-                    <Paper className='profile-videos-paper'>
-                        {videos}
-                    </Paper>
-            </Paper>
+                    <div className='video-content-container'>
+                        <Paper className='profile-videos-paper'>
+                            {videos}
+                        </Paper>
+                    </div>
+            </div>
         )
     }
 } 
+
+{/* <div className='video-entry'>
+                            <i onClick={() => this.setState({toggleDeletePrompt: true})} className="fas fa-times"></i>
+                            <Link to={`/video/${val.videoID}`}>
+                                <img className='profile-videos-thumbnail' src={val.thumbnail} />
+                            </Link>
+                            {this.state.toggleDeletePrompt ? 
+                            <>
+                                <div>
+                                    <p>Would You Like to Delete this Video?</p>
+                                    <button>Yes</button>
+                                    <button>No</button>
+                                </div>
+                            </>
+                            : null}
+                        </div> */}

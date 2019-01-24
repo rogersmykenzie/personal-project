@@ -56,7 +56,7 @@ class Register extends Component {
                 <Paper className='register-paper'>
                 <br />
                     <Typography className='register-text' variant='display1'>
-                        Sign up today
+                        Register
                     </Typography>
                     <br />
                     <TextField label='First Name' variant='outlined' onChange={e => this.props.changeFirstName(e.target.value)}/>

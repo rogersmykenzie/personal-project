@@ -5,13 +5,13 @@ import {Link} from 'react-router-dom'
 import '../../styles/Sidebar.css'
 export default function ProfileSidebar() {
     return(
-        <Paper>
+        // <Paper>
             <ul className='sidebar'>
-                <Link to='/profile'><li>About</li></Link>
-                <Link to='/profile/videos'><li>Videos</li></Link>
-                <Link to='/profile/ranking'><li>Ranking</li></Link>
-                <Link to='/profile/analytics'><li>Analytics</li></Link>
+                <Link to='/profile'><li className='sidebar-item'>About</li></Link>
+                <Link to='/profile/videos'><li className='sidebar-item'>Videos</li></Link>
+                <Link to='/profile/ranking'><li className='sidebar-item'>Ranking</li></Link>
+                <Link to='/profile/analytics'><li className='sidebar-item'>Analytics</li></Link>
             </ul>
-        </Paper>
+        // </Paper>
     )
 }

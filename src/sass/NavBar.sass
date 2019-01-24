@@ -8,6 +8,12 @@
     color: white
     align-items: center
     justify-content: right
+    font-family: 'Ceviche One', cursive
+
+.navbar-link
+    text-decoration: none
+    color: #cc0000
+    font-size: 2em
 .nav-heading 
     margin-left: 3%
     // border: 1px solid rgba(0,0,0, .3)
@@ -20,6 +26,10 @@
     height: 1em
     align-items: center
 
+.login-button
+    font-size: 1.7em
+    color: #ffc266
+    margin-left: 2vw
 .nav-heading:hover
     cursor: pointer
 
@@ -37,3 +47,16 @@
 
 a 
     text-decoration: none
+
+.nav-heading, .login-button
+    outline: none
+
+.nav-heading:active, .login-button
+    transform: scale(1)
+    animation: onClick 1s linear
+
+@keyframes onClick
+    0%
+        transform: scale(.8)
+    100%
+        transform: scale(1)

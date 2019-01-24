@@ -6,7 +6,9 @@ const session = require('express-session')
 const {registerUser, loginUser, getProfile, 
     postVideoInfo, getUserID, getNumVideos,
     getUserVideos, getVideoRankings, logoutUser,
-    getRandomVideos} = require('./controllers/authController');
+    getRandomVideos, videoVote, searchVideos,
+    getUsersBasedOnVideos, getSingleVideo,
+    getTotalVideoVotes, deleteVideo} = require('./controllers/authController');
 // const { registerUser } = require('./controllers/authController');
 
 const PORT = process.env.SERVER_PORT || 3005;
@@ -36,9 +38,21 @@ app.get('/api/videos/:user', getUserVideos)
 //GET VIDEO RANKINGS
 app.get('/api/rankings', getVideoRankings)
 //LOGOUT
-app.get('/auth/logout', logoutUser)
+app.delete('/auth/logout', logoutUser)
 //GET RANDOM VIDEO
 app.get('/api/video/random', getRandomVideos)
+//VOTE FOR A VIDEO
+app.put('/api/video/vote', videoVote)
+//GET SEARCH RESULTS
+app.get('/api/search', searchVideos)
+//GET USERS BASED ON VIDEOS
+app.post('/api/users', getUsersBasedOnVideos)
+//GET SPECIFIC VIDEO
+app.get('/api/search/video/:id', getSingleVideo)
+//GET ALL VIDEOS
+app.get('/api/all/votes', getTotalVideoVotes)
+//DELETE VIDEO
+app.delete('/api/videos/:id', deleteVideo)
 
 
 app.listen(PORT, () => console.log(`Listening on Port ${PORT}`));

@@ -7,8 +7,8 @@ class Battle extends Component {
     render() {
         return(
             <div className='player-container'>
-                <VideoCard video={this.props.video1} first={true}/>
-                <VideoCard video={this.props.video2} first={false}/>
+                <VideoCard video={this.props.video1} first={true} votable={true}/>
+                <VideoCard video={this.props.video2} first={false} votable={true}/>
             </div>
         )
     }

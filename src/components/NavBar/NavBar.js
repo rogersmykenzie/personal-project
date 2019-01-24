@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import {AppBar, Toolbar, Typography} from '@material-ui/core'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 import '../../styles/NavBar.css'
 
-export default class NavBar extends Component {
+class NavBar extends Component {
 
     constructor() {
         super();
@@ -14,16 +15,27 @@ export default class NavBar extends Component {
             needless: true
         }
     }
+    componentDidMount() {
+    //     if(this.state.profilePicture === null) {
+    //         console.log('here')
+    //         axios.get('/auth/user')
+    //         .then(response => {
+    //             this.setState({profilePicture: response.data.profilePicture})
+    //         })
+    //     }
+    }
 
     componentDidUpdate() {
-        if(this.state.profilePicture === null) {
-            console.log('here')
-            axios.get('/auth/user')
-            .then(response => {
-                this.setState({profilePicture: response.data.profilePicture})
-            })
-        }
+        // if(this.state.profilePicture === null) {
+        //     console.log('here')
+        //     axios.get('/auth/user')
+        //     .then(response => {
+        //         console.log('axios finished')
+        //         this.setState({profilePicture: response.data.profilePicture})
+        //     }).catch(err => console.log(err))
+        // }
     }
+
     render() {
         return (
             <nav className='navbar-container'>
@@ -31,16 +43,14 @@ export default class NavBar extends Component {
                     <Toolbar>
                         <Typography>
                             <ul className='navbar'>
-                            <Link to='/profile'>
-                                <li>{this.state.profilePicture ? 
-                                    <img src={this.state.profilePicture} 
-
-                                    className='prof-pic'/> 
-                                : 'Profile'}</li>
-                            </Link>
-                                <li className='nav-heading'>Leaderboard</li>
-                                <li className='nav-heading'>Search</li>
-                                <li className='nav-heading'><Link to='/battle/loading'>BATTLE</Link></li>
+                                <li className='navbar-link'>{this.props.profilePicture ? 
+                                    <Link className='navbar-link' to='/profile'><img src={this.props.profilePicture} 
+                                    className='prof-pic'/> </Link>
+                                : <Link to='/login' className='login-button'>Login</Link>}</li>
+                            
+                                <li className='nav-heading'><Link className='navbar-link' to='/leaderboard'>Leaderboard</Link></li>
+                                <li className='nav-heading'><Link className='navbar-link' to='/search'>Search</Link></li>
+                                <li className='nav-heading'><Link className='navbar-link' to='/battle/loading'>BATTLE</Link></li>
                             </ul>
                         </Typography>
                     </Toolbar>
@@ -49,3 +59,7 @@ export default class NavBar extends Component {
         )
     }
 }
+
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(NavBar);
