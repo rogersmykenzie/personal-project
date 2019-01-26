@@ -58,12 +58,12 @@ export default class ProfileRanking extends Component {
         })
         return(
             <div>
-                <Paper className='profile-ranking-container'> 
+                <div className='profile-ranking-container'> 
                 <Sidebar />
                     <Paper className='profile-ranking-paper'>
-                        {bideos}
+                        {bideos.length > 0 ? bideos : 'The tournament awaits you, fledgling'}
                     </Paper>
-                </Paper>
+                </div>
             </div>
         )
     }

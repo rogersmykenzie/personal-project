@@ -20,7 +20,8 @@ export default class ProfileVideoSlot extends Component {
     render() {
         return(
             <div className='video-entry'>
-                <i onClick={() => this.setState({toggleDeletePrompt: true})} className="fas fa-times"></i>
+                <i onClick={() => this.setState({toggleDeletePrompt: true})} class="fas fa-times"></i>
+                <br /><br /><br />
                 <Link to={`/video/${this.props.videoID}`}>
                     <img className='profile-videos-thumbnail' src={this.props.thumbnail} />
                 </Link>

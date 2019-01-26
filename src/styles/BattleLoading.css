@@ -15,6 +15,17 @@
   height: 90vh;
 }
 
+.loading-background {
+  background: url("../assets/piqrE9o5T.jpg");
+  background-position: bottom;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
 .shape-two {
   width: 20px;
   height: 100px;

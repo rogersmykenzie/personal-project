@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Typography } from '@material-ui/core'
 
 import '../../styles/SearchResults.css'
 
@@ -30,9 +31,9 @@ class SearchResults extends Component {
                 <ul className='search-result-info'>
                     <li><Link to={`/video/${val.videoID}`}><img className='search-results-thumbnail' src={val.thumbnailID} /></Link></li>
                     <div>
-                        <li><u><strong>Title:</strong> {val.title}</u></li>
-                        <li><u><strong>Score:</strong> {val.votes}</u></li>
-                        <li><u><strong>Fledgling:</strong> {this.state.searchSortedAuthors[i].username}</u></li>
+                        <li><u><Typography variant='caption'>Title:</Typography> {val.title}</u></li>
+                        <li><u><Typography variant='caption'>Score:</Typography> {val.votes}</u></li>
+                        <li><u><Typography variant='caption'>Fledgling:</Typography> {this.state.searchSortedAuthors[i].username}</u></li>
                     </div>
                 </ul>
             </div>)

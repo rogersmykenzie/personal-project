@@ -72,7 +72,7 @@ class Profile extends Component {
     
     render() {
         return(
-            <div><br /><br /><br /><br />
+            <div>
                 <div className='main-head-container'>
                     <Sidebar />
                     <img className='profile-picture-src' src={this.state.profilePicture} />

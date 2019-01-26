@@ -219,15 +219,18 @@ module.exports = {
                 })
                 console.log(tags)
                 for(let c = 0; c < arr.length; c++) {
-                    if(tags.includes(arr[c].toLowerCase())) {
+                    if(tags.includes(arr[c].toLowerCase()) ) {
                         console.log('here')
                         indexOfVideosWhoseTagsMatchTheQuery.push(i);
                     }
                 }
             }
+            let finalIndexArr = indexOfVideosWhoseTagsMatchTheQuery.filter((val, i, arr) => {
+                return indexOfVideosWhoseTagsMatchTheQuery.indexOf(val) === i
+            })
             let jsonArr = []
-            for(let i = 0; i < indexOfVideosWhoseTagsMatchTheQuery.length; i++) {
-                jsonArr.push(response.val()[indexOfVideosWhoseTagsMatchTheQuery[i]]);
+            for(let i = 0; i < finalIndexArr.length; i++) {
+                jsonArr.push(response.val()[finalIndexArr[i]]);
             }
             res.status(200).json(jsonArr);
         })

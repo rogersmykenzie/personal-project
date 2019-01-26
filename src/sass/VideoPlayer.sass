@@ -31,12 +31,19 @@ input[type='range']
 .slider-container
     display: flex
 
-.volume-up-button
+.volume-up-button, .volume-down-button, .forward-button, .rewind-button, .mute-button, .play-button, .unmute-button, .pause-button
     background: transparent
     border: none
+    outline: none
 
-.fa-volume-up
+.fas
     color: white
 
-.fa-volume-up:focus
-    transform: scale(1)
+.volume-up-button:active, .volume-down-button:active, .forward-button:active, .rewind-button:active, .mute-button:active, .play-button:active, .unmute-button:active, .pause-button:active
+    animation: onClick .1s linear
+
+@keyframes onClick
+    0%
+        transform: scale(.8)
+    100%
+        transform: scale(1)

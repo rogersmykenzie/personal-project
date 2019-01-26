@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player'
 import '../../styles/VideoPlayer.css'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios';
+import {Fab} from '@material-ui/core';
 
 class VideoPlayer extends Component {
     constructor(props) {
@@ -82,7 +83,8 @@ class VideoPlayer extends Component {
                         <button className='rewind-button' onClick={() => this.state.player.seekTo(this.state.player.getCurrentTime() + 5)}><i className="fas fa-redo-alt" /></button>
                     </div>
                 </div>
-                    {this.props.voteable ? <button onClick={() => this.handleUpvote()}>Upvote</button> : null}
+                <br />
+                    {this.props.voteable ? <Fab variant='extended' color='primary' onClick={() => this.handleUpvote()}><i className="fas fa-hand-point-up"></i></Fab> : null}
                     {this.state.redirect ? <Redirect to='/battle/loading' /> : null}
             </div>
         )

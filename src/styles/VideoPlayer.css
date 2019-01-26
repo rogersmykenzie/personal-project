@@ -33,52 +33,27 @@ input[type=range] {
   display: flex;
 }
 
-.volume-up-button, .volume-down-button, .mute-button, .unmute-button, .play-button, .pause-button, .rewind-button, .forward-button {
+.volume-up-button, .volume-down-button, .forward-button, .rewind-button, .mute-button, .play-button, .unmute-button, .pause-button {
   background: transparent;
   border: none;
-  height: 100%;
-  width: 4vw;
-  transform: scale(1);
+  outline: none;
 }
 
-.pause-button, .play-button {
-  height: 6.8vh
-}
-
-.fa-volume-up, .fa-volume-down, .fa-volume-mute, .fa-volume-off, .fa-play, .fa-pause, .fa-redo-alt, .fa-undo-alt {
+.fas {
   color: white;
 }
 
-.volume-up-button:active, .volume-down-button:active, .mute-button:active, .unmute-button:active, .play-button:active, .pause-button:active, .rewind-button:active, .forward-button:active {
-  transform: scale(1);
-  animation: onClick 1s linear
-}
-button{
-  outline: none
-}
-@keyframes onClick {
-  from {
-    transform: scale(.8);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-.button {
-  outline: none
-}
-.button:active {
-  transform: scale(1);
-  animation: onClick 1s linear
-}
-@keyframes onClick {
-  from {
-    transform: scale(.8);
-  }
-  to {
-    transform: scale(1);
-  }
+.volume-up-button:active, .volume-down-button:active, .forward-button:active, .rewind-button:active, .mute-button:active, .play-button:active, .unmute-button:active, .pause-button:active {
+  animation: onClick 0.1s linear;
 }
 
+@keyframes onClick {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 /*# sourceMappingURL=VideoPlayer.css.map */

@@ -1,11 +1,9 @@
 .leaderboard-content {
-  margin-top: 10vw;
-}
-
-.leaderboard-legend {
-  list-style-type: none;
+  margin-top: 10vh;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=Leaderboard.css.map */

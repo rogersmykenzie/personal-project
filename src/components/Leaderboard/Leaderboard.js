@@ -23,12 +23,6 @@ class Leaderboard extends Component {
         })
         return(
             <div className='leaderboard-content'>
-                <ul className='leaderboard-legend'>
-                    <li>Rank</li>
-                    <li>Votes</li>
-                    <li>Title</li>
-                    <li>Thumbnail</li>
-                </ul>
                 {leaderboard}
             </div>
         )

@@ -47,11 +47,14 @@ class BattleLoading extends Component {
 
     render() {
         return(
-            <div className='loading-container' draggable>
-                <div className='shape-one'></div>
-                <div className='shape-two'></div>
-                <div className='shape-three'></div>
-                {this.state.redirectToBattle ? <Redirect to='/battle' /> : null}
+            <div className='loading-background'>
+                <div className='loading-container' draggable>
+                    <h1>Loading</h1>
+                    <div className='shape-one'></div>
+                    <div className='shape-two'></div>
+                    <div className='shape-three'></div>
+                    {this.state.redirectToBattle ? <Redirect to='/battle' /> : null}
+                </div>
             </div>
         )
     }

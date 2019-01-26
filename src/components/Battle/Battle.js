@@ -8,7 +8,9 @@ class Battle extends Component {
         return(
             <div className='player-container'>
                 <VideoCard video={this.props.video1} first={true} votable={true}/>
+                <h1 className='versus'>V.S.</h1>
                 <VideoCard video={this.props.video2} first={false} votable={true}/>
+                <br />
             </div>
         )
     }

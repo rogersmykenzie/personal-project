@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import VideoCard from '../VideoCard/VideoCard'
 import axios from 'axios';
 
+import '../../styles/SoloPlayer.css'
+
 export default class SoloPlayer extends Component {
     constructor() {
         super();
@@ -12,7 +14,6 @@ export default class SoloPlayer extends Component {
     }
     componentDidMount() {
         // console.log(this.props.match.params.id)
-        console.log('mountedd')
         axios.get(`/api/search/video/${this.props.match.params.id}`).then(response => {
             console.log(response);
             this.setState({video: response.data});
@@ -20,9 +21,9 @@ export default class SoloPlayer extends Component {
     }
     render() {
         return(
-            <>
+            <div className='solo-video-card'>
                 <VideoCard video={this.state.video} first={false} voteable={false}/>
-            </>
+            </div>
         )
     }
 }
