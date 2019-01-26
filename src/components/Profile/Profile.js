@@ -75,7 +75,7 @@ class Profile extends Component {
             <div>
                 <div className='main-head-container'>
                     <Sidebar />
-                    <img className='profile-picture-src' src={this.state.profilePicture} />
+                    <img className='profile-picture-src' src={this.props.profilePicture} />
                     <Paper className='profile-head-bio'>
                         <Typography variant='h6'>
                             <p className='bio-text'>Bio: {this.state.bio}</p>

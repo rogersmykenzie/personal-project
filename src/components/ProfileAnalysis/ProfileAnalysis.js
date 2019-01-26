@@ -59,15 +59,9 @@ export default class ProfileAnalysis extends Component {
         return(
             <div className='profileanalysis-main-container'>
                 {/* {this.state.isAdmin ? <Redirect to='/profile/videos' /> : null} */}
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <ProfileSidebar />
-                <br />
-                <br />
-                <br />
+                <div className='analysis-sidebar'>
+                    <ProfileSidebar />
+                </div>
                 <h1>Your Videos</h1>
                 <Pie data={{
                     labels: labelsArr,

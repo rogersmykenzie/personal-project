@@ -93,7 +93,7 @@ module.exports = {
     },
     
     
-    
+    //UPDATE THIS SO THAT IT POST THE VIDEO TO THE DATABASE WITH AN ID OF THE HIGHEST ID + 1 USE MATH.MAX
     postVideoInfo: (req, res, next) => {
         firebase.database().ref().once('value').then(response => {
             let numVideos = response.val().videos.length

@@ -3,6 +3,7 @@ import {Paper} from '@material-ui/core'
 import Sidebar from '../ProfileSidebar/ProfileSidebar'
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import {Typography} from '@material-ui/core'
 
 import '../../styles/ProfileRanking.css'
 
@@ -47,11 +48,13 @@ export default class ProfileRanking extends Component {
         let bideos = this.state.videos.map((val, i, arr) => {
             return(
                 <div>
-                    <ul>
-                        <li>{val.rank}</li>
-                        <li><Link to={`/video/${val.videoID}`}><img src={val.thumbnailID} /></Link></li>
-                        <li>{val.title}</li>
-                        <li>{val.votes}</li>
+                    <ul className='video-ranking-list'>
+                            <li><Link to={`/video/${val.videoID}`}><img className='video-ranking-thumbnail' src={val.thumbnailID} /></Link></li>
+                        <div>
+                            <li><Typography variant='caption'>Rank</Typography>{val.rank}</li>
+                            <li><Typography variant='caption'>Title:</Typography> {val.title}</li>
+                            <li><Typography variant='caption'>Score:</Typography> {val.votes}</li>
+                        </div>
                     </ul>
                 </div>
             )

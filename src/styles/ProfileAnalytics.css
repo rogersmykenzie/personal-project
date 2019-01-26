@@ -1,5 +1,8 @@
 .profileanalysis-main-container {
   font-family: "Vesper Libre", serif;
+  display: flex;
+  margin-top: 10vh;
+  margin-left: 1vw;
 }
 
 /*# sourceMappingURL=ProfileAnalytics.css.map */
