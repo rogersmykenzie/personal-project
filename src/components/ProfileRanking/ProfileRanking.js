@@ -50,7 +50,7 @@ export default class ProfileRanking extends Component {
                 <div>
                     <ul className='video-ranking-list'>
                             <li><Link to={`/video/${val.videoID}`}><img className='video-ranking-thumbnail' src={val.thumbnailID} /></Link></li>
-                        <div>
+                        <div className='ranking-info'>
                             <li><Typography variant='caption'>Rank</Typography>{val.rank}</li>
                             <li><Typography variant='caption'>Title:</Typography> {val.title}</li>
                             <li><Typography variant='caption'>Score:</Typography> {val.votes}</li>

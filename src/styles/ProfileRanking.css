@@ -29,6 +29,14 @@
 .video-ranking-thumbnail {
   width: 180px;
   height: 100px;
+  border-radius: 5px;
+}
+
+.ranking-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  text-align: right;
 }
 
 /*# sourceMappingURL=ProfileRanking.css.map */

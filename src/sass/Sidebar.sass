@@ -1,15 +1,26 @@
 .sidebar
     list-style-type: none
-    // display: flex
-    // flex-direction: column
+    display: flex
+    flex-direction: column
     border: 2px solid black
     height: 500px
     text-align: center
-    // align-items: center
+    align-items: center
 
 .sidebar-item
-    // padding-right: 80px
-    padding-left: 0px
+    margin-right: 2.5vw
+    margin-top: 2vh
 
 a 
     margin: 0px 0px
+    color: inherit
+
+.sidebar-item:active
+    transform: scale(1)
+    animation: onClick .05s linear
+
+@keyframes onClick
+    0%
+        transform: scale(.2)
+    100%
+        transform: scale(1)

@@ -62,27 +62,33 @@ export default class ProfileAnalysis extends Component {
                 <div className='analysis-sidebar'>
                     <ProfileSidebar />
                 </div>
-                <h1>Your Videos</h1>
-                <Pie data={{
-                    labels: labelsArr,
-                    datasets: [{
-                    label: "My First dataset",
-                    backgroundColor: [this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor() ],
-                    borderColor: 'black',
-                    data: dataArr,
-                    }]}
-                } />
-                <br />
-                <h1>All Videos</h1>
-                <Pie data={{
-                    labels: labelsArr2,
-                    datasets: [{
-                    label: "My First dataset",
-                    backgroundColor: [this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor() ],
-                    borderColor: 'black',
-                    data: dataArr2,
-                    }]}
-                } />
+                <div className='analysis-charts'>
+                    <div>
+                        <h1>Your Videos</h1>
+                        <Pie className='pie-1' data={{
+                            labels: labelsArr,
+                            datasets: [{
+                            label: "My First dataset",
+                            backgroundColor: [this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor() ],
+                            borderColor: 'black',
+                            data: dataArr,
+                            }]}
+                        } />
+                    </div>
+                    <br />
+                    <div>
+                        <h1>All Videos</h1>
+                        <Pie className='pie-2' data={{
+                            labels: labelsArr2,
+                            datasets: [{
+                            label: "My First dataset",
+                            backgroundColor: [this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor(), this.giveRandomColor() ],
+                            borderColor: 'black',
+                            data: dataArr2,
+                            }]}
+                        }/>                
+                    </div>
+                </div>
             </div>
         )
     }
