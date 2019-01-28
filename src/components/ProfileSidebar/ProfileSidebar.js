@@ -7,10 +7,10 @@ export default function ProfileSidebar() {
     return(
         // <Paper>
             <ul className='sidebar'>
-                <Link to='/profile'><li className='sidebar-item'>About</li></Link>'
-                <Link to='/profile/videos'><li className='sidebar-item'>Videos</li></Link>
-                <Link to='/profile/ranking'><li className='sidebar-item'>Ranking</li></Link>
-                <Link to='/profile/analytics'><li className='sidebar-item'>Analytics</li></Link>
+                <div className='sidebar-item-container'><Link to='/profile'><li className='sidebar-item'>About</li></Link></div>
+                <div className='sidebar-item-container'><Link to='/profile/videos'><li className='sidebar-item'>Videos</li></Link></div>
+                <div className='sidebar-item-container'><Link to='/profile/ranking'><li className='sidebar-item'>Ranking</li></Link></div>
+                <div className='sidebar-item-container'><Link to='/profile/analytics'><li className='sidebar-item'>Analytics</li></Link></div>
             </ul>
         // </Paper>
     )

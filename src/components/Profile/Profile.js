@@ -72,24 +72,27 @@ class Profile extends Component {
     
     render() {
         return(
-            <div>
+            <div className='profile-background'>
                 <div className='main-head-container'>
                     <Sidebar />
                     <img className='profile-picture-src' src={this.props.profilePicture} />
                     <Paper className='profile-head-bio'>
-                        <Typography variant='h6'>
-                            <p className='bio-text'>Bio: {this.state.bio}</p>
-                            <Input type='file' disableUnderline={true} onChange={(e) => this.setState({video: e.target.files[0]}) } >Upload</Input>
-                            <Input type='file' disableUnderline={true} onChange={(e) => this.setState({thumbnail: e.target.files[0]}) } >Upload</Input>
-                            <TextField variant='outlined' placeholder='Video Name' onChange={e => this.setState({videoTitle: e.target.value})} />
-                            <TextField variant='outlined' placeholder='Tags' onChange={e => this.setState({tags: e.target.value})} />
-                            <Button color='primary' variant='contained' onClick={() => this.handleFile()}>Upload</Button>
-                            <br />
-                            <button onClick={() => this.handleLogout()}>Logout</button>
+                            <p className='bio-text'>Bio: {this.props.bio}</p>
+
+                            <Paper className='upload-paper'>
+                                <label className='video-upload-label' for='video-upload-button'>SELECT VIDEO</label>
+                                <Input id='video-upload-button' type='file' disableUnderline={true} onChange={(e) => this.setState({video: e.target.files[0]}) } ></Input>
+                                <label className='thumbnail-upload-label' for='thumbnail-upload-button'>SELECT THUMBNAIL</label>
+                                <Input id='thumbnail-upload-button' type='file' disableUnderline={true} onChange={(e) => this.setState({thumbnail: e.target.files[0]}) } >Upload</Input>
+                                <TextField className='upload-field' variant='outlined' placeholder='Video Name' onChange={e => this.setState({videoTitle: e.target.value})} />
+                                <TextField className='upload-field' variant='outlined' placeholder='Tags (e.g. tag1, tag2, tag3)' onChange={e => this.setState({tags: e.target.value})} />
+                                <br />
+                                <Button color='primary' variant='contained' onClick={() => this.handleFile()}>Upload</Button>
+                            </Paper>
                             {this.state.redirect ? <Redirect to='/login' /> : null}
-                        </Typography>
                     </Paper>
                 </div>
+                <Button onClick={() => this.handleLogout()}>Logout</Button>
             </div>
         )
     }

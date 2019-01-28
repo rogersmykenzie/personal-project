@@ -77,7 +77,7 @@ module.exports = {
                         req.session.userID = index
                         console.log('Authenticated')
                         console.log(req.session);
-                        res.status(200).json({profilePicture: req.session.profilePicture});
+                        res.status(200).json({profilePicture: req.session.profilePicture, bio: req.session.bio});
                     }
                 })
             }

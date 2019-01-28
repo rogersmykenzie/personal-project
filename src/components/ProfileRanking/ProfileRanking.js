@@ -41,9 +41,7 @@ export default class ProfileRanking extends Component {
                 })
             })
         })
-
     }
-
     render() {
         let bideos = this.state.videos.map((val, i, arr) => {
             return(
@@ -60,7 +58,7 @@ export default class ProfileRanking extends Component {
             )
         })
         return(
-            <div>
+            <div className='profile-ranking-background'>
                 <div className='profile-ranking-container'> 
                 <Sidebar />
                     <Paper className='profile-ranking-paper'>

@@ -13,7 +13,8 @@ const initialState = {
     video1: {},
     video2: {},
     searchQuery: '',
-    searchResultVideos: []
+    searchResultVideos: [],
+    bio: ''
 }
 
 
@@ -31,9 +32,15 @@ const CHANGE_VIDEO_1 = 'CHANGE_VIDEO_1';
 const CHANGE_VIDEO_2 = 'CHANGE_VIDEO_2';
 const CHANGE_SEARCH_QUERY = 'CHANGE_SEARCH_QUERY';
 const CHANGE_SEARCH_RESULTS = 'CHANGE_SEARCH_RESULTS';
+const CHANGE_BIO = 'CHANGE_BIO'
 
 
-
+export function changeBio(bio) {
+    return {
+        type: CHANGE_BIO,
+        payload: bio
+    }
+}
 export function changeSearchResults(stuff) {
     return {
         type: CHANGE_SEARCH_RESULTS,
@@ -117,6 +124,11 @@ export function changeEmail(change) {
 
 export default function reducer(state=initialState, action) {
     switch(action.type) {
+        case CHANGE_BIO:
+        return {
+            ...state,
+            bio: action.payload
+        }
         case CHANGE_SEARCH_RESULTS:
         return {
             ...state,

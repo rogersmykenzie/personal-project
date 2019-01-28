@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import {Typography} from '@material-ui/core'
+
+import '../../styles/ProfileVideoSlot.css'
 
 export default class ProfileVideoSlot extends Component {
     constructor() {
@@ -20,11 +23,24 @@ export default class ProfileVideoSlot extends Component {
     render() {
         return(
             <div className='video-entry'>
-                <i class="fas fa-times" onClick={() => this.handleDelete(this.props.videoID)}></i>
-                <br /><br /><br />
                 <Link to={`/video/${this.props.videoID}`}>
                     <img className='profile-videos-thumbnail' src={this.props.thumbnail} />
                 </Link>
+                <ul className='video-slot-list'>
+                    <li className='video-slot-list-item'>
+                        <Typography variant='caption'>
+                            Title:
+                        </Typography>
+                        {this.props.title}
+                    </li>
+                    <li className='video-slot-list-item'>
+                        <Typography variant='caption'>
+                            Battles Won:
+                        </Typography>
+                        {this.props.votes}
+                    </li>
+                </ul>
+                <i class="far fa-trash-alt delete-video" onClick={() => this.setState({toggleDeletePrompt: !this.state.toggleDeletePrompt})}></i>
                 {this.state.toggleDeletePrompt ? 
                 <>
                     <div>

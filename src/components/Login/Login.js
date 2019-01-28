@@ -4,7 +4,7 @@ import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
 
 import '../../styles/Login.css'
-import {changeLoginUsername, changeLoginPassword, changeProfilePicture} from '../../ducks/reducer'
+import {changeLoginUsername, changeLoginPassword, changeProfilePicture, changeBio} from '../../ducks/reducer'
 import axios from 'axios';
 
 
@@ -28,6 +28,7 @@ class Login extends Component {
         axios.post('/auth/login', obj)
         .then(response => {
             this.props.changeProfilePicture(response.data.profilePicture)
+            this.props.changeBio(response.data.bio)
             if(response.status === 200) {
                 this.setState({redirect: true})
             }
@@ -50,7 +51,7 @@ class Login extends Component {
                         </TextField>
                         <br />
                         <br />
-                        <TextField type='password' label='Password' variant='outlined' onChange={e => this.props.changeLoginPassword(e.target.value)} onKeyPress={e => e.key==='Enter' ? this.handleLogin() : null} >
+                        <TextField type='password' label='Password' variant='outlined' onChange={e => this.props.changeLoginPassword(e.target.value)} onKeyPress={e => e.key==='Enter' ? this.handleLogin() : null}>
 
                         </TextField>
                         <br />
@@ -71,4 +72,4 @@ class Login extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps, {changeLoginPassword, changeLoginUsername, changeProfilePicture})(Login)
+export default connect(mapStateToProps, {changeLoginPassword, changeLoginUsername, changeProfilePicture, changeBio})(Login)

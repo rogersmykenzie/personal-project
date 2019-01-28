@@ -31,17 +31,19 @@ export default class ProfileVideos extends Component {
         if(this.state.userVideos.length > 0) {
             videos = this.state.userVideos.map((val, i ,arr) => {
                 console.log(val);
-                return <ProfileVideoSlot thumbnail={val.thumbnail} videoID={val.videoID} />
+                return <ProfileVideoSlot thumbnail={val.thumbnail} videoID={val.videoID} title={val.title} votes={val.votes}/>
             })
         }
         return(
-            <div className='profile-video-container'> 
-                <Sidebar />
-                    <div className='video-content-container'>
-                        <Paper className='profile-videos-paper'>
-                            {videos}
-                        </Paper>
-                    </div>
+            <div className='profile-video-background'>
+                <div className='profile-video-container'> 
+                    <Sidebar />
+                        <div className='video-content-container'>
+                            <Paper className='profile-videos-paper'>
+                                {videos}
+                            </Paper>
+                        </div>
+                </div>
             </div>
         )
     }
