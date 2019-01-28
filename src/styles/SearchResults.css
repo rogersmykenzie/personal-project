@@ -3,18 +3,22 @@
   height: auto;
   border: 3px solid black;
   border-radius: 5px;
+  margin-right: 6vw;
+  margin-left: 6vw;
 }
 
 .search-result-capsule {
   display: flex;
   width: 35vw;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .search-result-info {
   list-style-type: none;
   display: flex;
   justify-content: space-around;
-  width: 5vw;
+  width: 2vw;
   align-items: center;
   margin-left: 10vw;
   margin-right: 10vw;
@@ -25,6 +29,12 @@
   width: 100vw;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.search-results-background {
+  margin-top: 8.5vh;
+  height: 91.5vh;
+  background: url("../assets/mountain-pixel.jpg");
 }
 
 /*# sourceMappingURL=SearchResults.css.map */

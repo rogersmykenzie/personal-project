@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Paper, Typography, Input, Button, TextField} from '@material-ui/core';
+import {Paper, Input, Button, TextField} from '@material-ui/core';
 import '../../styles/Profile.css'
 import {storage} from '../../firebase'
 import {connect} from 'react-redux';
@@ -33,6 +33,7 @@ class Profile extends Component {
     }
 
     handleFile = () => {
+
         axios.get('/api/videos')
         .then(response => {
             let num = response.data + 1;
@@ -71,6 +72,7 @@ class Profile extends Component {
     }
     
     render() {
+
         return(
             <div className='profile-background'>
                 <div className='main-head-container'>
@@ -78,7 +80,6 @@ class Profile extends Component {
                     <img className='profile-picture-src' src={this.props.profilePicture} />
                     <Paper className='profile-head-bio'>
                             <p className='bio-text'>Bio: {this.props.bio}</p>
-
                             <Paper className='upload-paper'>
                                 <label className='video-upload-label' for='video-upload-button'>SELECT VIDEO</label>
                                 <Input id='video-upload-button' type='file' disableUnderline={true} onChange={(e) => this.setState({video: e.target.files[0]}) } ></Input>
@@ -92,7 +93,7 @@ class Profile extends Component {
                             {this.state.redirect ? <Redirect to='/login' /> : null}
                     </Paper>
                 </div>
-                <Button onClick={() => this.handleLogout()}>Logout</Button>
+                    <Button variant='contained' onClick={() => this.handleLogout()}>Logout</Button>
             </div>
         )
     }

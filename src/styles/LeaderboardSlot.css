@@ -1,7 +1,11 @@
 .leaderboard-slot-item {
   justify-content: center;
   width: 30vw;
-  border-radius: 10px;
+  border: 1px solid black;
+  background: white;
+  padding-right: 3vw;
+  margin-top: 0.5vh;
+  margin-bottom: 0.5vh;
 }
 
 .ranking-list {
@@ -14,6 +18,8 @@
 
 .leaderboard-thumbnail {
   width: 10vw;
+  border: 1px solid black;
+  border-radius: 3px;
 }
 
 /*# sourceMappingURL=LeaderboardSlot.css.map */

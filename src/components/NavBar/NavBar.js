@@ -3,6 +3,7 @@ import {AppBar, Toolbar, Typography} from '@material-ui/core'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {changeProfilePicture, changeBio} from '../../ducks/reducer'
 
 import '../../styles/NavBar.css'
 
@@ -23,6 +24,11 @@ class NavBar extends Component {
     //             this.setState({profilePicture: response.data.profilePicture})
     //         })
     //     }
+    axios.get('/auth/current').then(response => {
+        console.log(response)
+        this.props.changeProfilePicture(response.data.profilePicture)
+        this.props.changeBio(response.data.bio)
+    })
     }
 
     componentDidUpdate() {
@@ -62,4 +68,4 @@ class NavBar extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, {changeProfilePicture, changeBio})(NavBar);

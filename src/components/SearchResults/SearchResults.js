@@ -31,9 +31,9 @@ class SearchResults extends Component {
                 <ul className='search-result-info'>
                     <li><Link to={`/video/${val.videoID}`}><img className='search-results-thumbnail' src={val.thumbnailID} /></Link></li>
                     <div>
-                        <li><u><Typography variant='caption'>Title:</Typography> {val.title}</u></li>
-                        <li><u><Typography variant='caption'>Score:</Typography> {val.votes}</u></li>
-                        <li><u><Typography variant='caption'>Fledgling:</Typography> {this.state.searchSortedAuthors[i].username}</u></li>
+                        <li><u><Typography variant='caption'>Title:</Typography><Typography variant='overline'>{val.title}</Typography></u></li>
+                        <li><u><Typography variant='caption'>Score:</Typography><Typography variant='overline'>{val.votes}</Typography></u></li>
+                        <li><u><Typography variant='caption'>Fledgling:</Typography><Typography variant='overline'>{this.state.searchSortedAuthors[i].username}</Typography></u></li>
                     </div>
                 </ul>
             </div>)
@@ -42,7 +42,7 @@ class SearchResults extends Component {
             results = 'No Results Were Found'
         }
         return(
-            <div>
+            <div className='search-results-background'>
                 <br />
                 <br />
                 <br />

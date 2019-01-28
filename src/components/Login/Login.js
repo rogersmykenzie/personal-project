@@ -63,7 +63,7 @@ class Login extends Component {
                             Don't have an account? <Link to='/register'>Sign Up</Link> today.
                         </Typography>
                     </Paper>
-                    {this.state.redirect ? <Redirect to='/' /> : null}
+                    {this.state.redirect ? <Redirect to='/profile' /> : null}
                 </form>
             </div>
         )

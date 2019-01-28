@@ -51,7 +51,7 @@ export default class ProfileRanking extends Component {
                         <div className='ranking-info'>
                             <li><Typography variant='caption'>Rank</Typography>{val.rank}</li>
                             <li><Typography variant='caption'>Title:</Typography> {val.title}</li>
-                            <li><Typography variant='caption'>Score:</Typography> {val.votes}</li>
+                            <li><Typography variant='caption'>Battles Survived:</Typography> {val.votes}</li>
                         </div>
                     </ul>
                 </div>

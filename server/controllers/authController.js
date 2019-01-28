@@ -1,7 +1,5 @@
-const admin = require('firebase-admin')
 const firebase = require('firebase');
 const bcrypt = require('bcryptjs');
-const serviceAccount = require('../resources/personal-project-88145-firebase-adminsdk-k7zzc-b2aec7c390.json');
 
 var config = {
     apiKey: "AIzaSyDNrg2KprOIejrxR2Sm8zi5cHTu7yMAjyc",
@@ -83,6 +81,29 @@ module.exports = {
             }
     
         })
+    },
+
+
+
+    getCurrentUser: (req, res, next) => {
+        console.log(req.session.username !== undefined)
+        if(req.session.username !== undefined) {
+            let obj = {
+                username: req.session.username,
+                firstName: req.session.firstName,
+                lastName: req.session.lastName,
+                followers: req.session.followers,
+                following: req.session.following,
+                email: req.session.email,
+                profilePicture: req.session.profilePicture,
+                bio: req.session.bio,
+                userID: req.session.userID
+            }
+            res.status(200).json(obj);
+        }
+        else {
+            res.sendStatus(400)
+        }
     },
 
 

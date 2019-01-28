@@ -8,7 +8,7 @@ const {registerUser, loginUser, getProfile,
     getUserVideos, getVideoRankings, logoutUser,
     getRandomVideos, videoVote, searchVideos,
     getUsersBasedOnVideos, getSingleVideo,
-    getTotalVideoVotes, deleteVideo} = require('./controllers/authController');
+    getTotalVideoVotes, deleteVideo, getCurrentUser} = require('./controllers/authController');
 // const { registerUser } = require('./controllers/authController');
 
 const PORT = process.env.SERVER_PORT || 3005;
@@ -18,13 +18,18 @@ app.use(json());
 app.use(session( {
     secret: 'not so safe',
     resave: true,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 2
+    }
 }));
 
 //REGISTER USER ENDPOINT
 app.post('/auth/register', registerUser)
 //LOGIN USER ENDPOINT
 app.post('/auth/login', loginUser)
+//CHECK FOR A USER ON THE SESSION
+app.get('/auth/current', getCurrentUser)
 //GET USER
 app.get('/auth/user', getProfile)
 //POST VIDEO INFO

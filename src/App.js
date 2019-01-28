@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 import './App.css';
 import routes from './routes';
 import NavBar from './components/NavBar/NavBar';
+import {ToastContainer} from 'react-toastify'
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import {green, pink, purple, blue, amber, yellow, red, brown, orange, grey, } from '@material-ui/core/colors'
 
 const colors = [green, pink, purple, blue, yellow, amber, red, brown, orange, grey]
+
 
 const getRandomColor = () => {
   return Math.floor(Math.random() * 10)
