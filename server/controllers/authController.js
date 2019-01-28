@@ -1,14 +1,6 @@
 const firebase = require('firebase');
 const bcrypt = require('bcryptjs');
-
-var config = {
-    apiKey: "AIzaSyDNrg2KprOIejrxR2Sm8zi5cHTu7yMAjyc",
-    authDomain: "personal-project-88145.firebaseapp.com",
-    databaseURL: "https://personal-project-88145.firebaseio.com",
-    projectId: "personal-project-88145",
-    storageBucket: "personal-project-88145.appspot.com",
-    messagingSenderId: "1005159256004"
-};
+const {config} = require('../resources/firebase-config/firebase-config')
 firebase.initializeApp(config);
 
 module.exports = {
@@ -117,6 +109,22 @@ module.exports = {
     //UPDATE THIS SO THAT IT POST THE VIDEO TO THE DATABASE WITH AN ID OF THE HIGHEST ID + 1 USE MATH.MAX
     postVideoInfo: (req, res, next) => {
         firebase.database().ref().once('value').then(response => {
+            // console.log(response.val());
+            // let arrOfVideoIDs = [];
+            // console.log(response.val().videos.length)
+            // for(let i = 1; i < response.val().videos.length; i++) {
+            //     console.log(response.val().videos[i])
+            //     if(response.val().videos[i]);
+            //         console.log(response.val().videos[i])
+            //         arrOfVideoIDs.push({id: response.val().videos[i].videoID, index: i});
+            // }
+            // arrOfVideoIDs.sort((a, b) => {
+            //     if(a.id < b.id)
+            //         return 1
+            //     if(a.id > b.id)
+            //         return -1
+            //     return 0
+            // })
             let numVideos = response.val().videos.length
             firebase.database().ref(`videos/${numVideos}`).set({
                 title: req.body.title,
@@ -157,15 +165,18 @@ module.exports = {
     getUserVideos: (req, res, next) => {
         firebase.database().ref('videos').once('value').then(response => {
             let userVideos = []
+            console.log(response.val());
             for(let i = 1; i <= response.val().length-1; i++) {
-                if(+response.val()[i].userID === +req.params.user) {
-                    userVideos.push({
-                        thumbnail: response.val()[i].thumbnailID,
-                        video: response.val()[i].reference,
-                        videoID: response.val()[i].videoID,
-                        votes: response.val()[i].votes,
-                        title: response.val()[i].title
-                    })
+                if(response.val()[i]) {
+                    if(+response.val()[i].userID === +req.params.user) {
+                        userVideos.push({
+                            thumbnail: response.val()[i].thumbnailID,
+                            video: response.val()[i].reference,
+                            videoID: response.val()[i].videoID,
+                            votes: response.val()[i].votes,
+                            title: response.val()[i].title
+                        })
+                    }
                 }
             }
             if(userVideos.length === 0)
@@ -183,6 +194,10 @@ module.exports = {
         firebase.database().ref('videos').once('value').then(response => {
             let videos = [...response.val()];
             videos.splice(0, 1);
+            for(let i = 0; i < videos.length; i++) {
+                if(!videos[i])
+                    videos.splice(i,1);
+            }
             videos.sort((a, b) => {
                 if(a.votes < b.votes)
                     return 1
@@ -205,13 +220,20 @@ module.exports = {
 
     getRandomVideos: (req, res, next) => {
         firebase.database().ref('videos').once('value').then(response => {
-            let length = response.val().length;
+            let videoArr = response.val().slice();
+            for(let i = videoArr.length; i >= 0; i--) {
+                if(!videoArr[i]) {
+                    videoArr.splice(i,1);
+                }
+            }
+            let length = videoArr.length;
             let randomVideoIndex1 = Math.floor(((Math.random() * 10) % (length-1)) + 1)
             let randomVideoIndex2 = randomVideoIndex1;
             while(randomVideoIndex2 === randomVideoIndex1) {
                 randomVideoIndex2 = Math.floor(((Math.random() * 10) % (length-1)) + 1)
             }
-            res.status(200).json({video1: response.val()[randomVideoIndex1], video2: response.val()[randomVideoIndex2]})
+
+            res.status(200).json({video1: videoArr[randomVideoIndex1], video2: videoArr[randomVideoIndex2]})
         })
     },
 
@@ -235,14 +257,16 @@ module.exports = {
         let indexOfVideosWhoseTagsMatchTheQuery = [];
         firebase.database().ref('videos').once('value').then(response => {
             for(let i = 1; i < response.val().length; i++) {
-                let tags = response.val()[i].tags.split(',').map((val, i, arr) => {
-                    return val.toLowerCase().trim();
-                })
-                console.log(tags)
-                for(let c = 0; c < arr.length; c++) {
-                    if(tags.includes(arr[c].toLowerCase()) ) {
-                        console.log('here')
-                        indexOfVideosWhoseTagsMatchTheQuery.push(i);
+                if(response.val()[i]) {
+                    let tags = response.val()[i].tags.split(',').map((val, i, arr) => {
+                        return val.toLowerCase().trim();
+                    })
+                    console.log(tags)
+                    for(let c = 0; c < arr.length; c++) {
+                        if(tags.includes(arr[c].toLowerCase()) ) {
+                            console.log('here')
+                            indexOfVideosWhoseTagsMatchTheQuery.push(i);
+                        }
                     }
                 }
             }
@@ -295,8 +319,15 @@ module.exports = {
 
 
     deleteVideo: (req, res, next) => {
-        firebase.database().ref(`videos/${req.params.id}`).remove().then(response => {
-            console.log(response.val())
+        firebase.database().ref(`videos/${req.params.id}`).set({
+            interactions: null,
+            reference: null,
+            tags: null,
+            thumbnail: null,
+            title: null,
+            userID: null,
+            videoID: null,
+            votes: null
         })
     }
 }

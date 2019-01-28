@@ -38,6 +38,7 @@ class BattleLoading extends Component {
         console.log('test')
         axios.get('/api/video/random')
         .then(response => {
+            console.log(response);
             this.props.changeVideo1(response.data.video1);
             this.props.changeVideo2(response.data.video2);
             setTimeout(() => this.setState({redirectToBattle: true}),1000);

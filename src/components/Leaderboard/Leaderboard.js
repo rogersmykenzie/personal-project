@@ -12,6 +12,7 @@ class Leaderboard extends Component {
     }
     componentDidMount() {
         axios.get('/api/rankings').then(response => {
+            console.log(response.data);
             this.setState({rankedVideos: response.data});
         })
     }

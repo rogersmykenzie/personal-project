@@ -20,6 +20,7 @@ export default class ProfileVideos extends Component {
         axios.get('/api/user')
         .then(response => {
             let userID = response.data;
+            console.log('userid: ', userID)
             axios.get(`/api/videos/${userID}`).then(response => {
                 this.setState({userVideos: [...response.data]})
             })

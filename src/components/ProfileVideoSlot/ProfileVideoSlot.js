@@ -45,7 +45,7 @@ export default class ProfileVideoSlot extends Component {
                 <>
                     <div>
                         <p>Would You Like to Delete this Video?</p>
-                        <button onClick={() => this.handleVideoDelete(this.props.videoID)}>Yes</button>
+                        <button onClick={() => this.handleDelete(this.props.videoID)}>Yes</button>
                         <button onClick={() => this.setState({toggleDeletePrompt: false})}>No</button>
                     </div>
                 </>
