@@ -8,7 +8,7 @@ const {registerUser, loginUser, getProfile,
     getUserVideos, getVideoRankings, logoutUser,
     getRandomVideos, videoVote, searchVideos,
     getUsersBasedOnVideos, getSingleVideo,
-    getTotalVideoVotes, deleteVideo, getCurrentUser} = require('./controllers/authController');
+    getTotalVideoVotes, deleteVideo, getCurrentUser} = require('./controllers/controller');
 // const { registerUser } = require('./controllers/authController');
 
 const PORT = process.env.SERVER_PORT || 3005;

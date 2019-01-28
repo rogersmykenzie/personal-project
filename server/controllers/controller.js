@@ -194,7 +194,7 @@ module.exports = {
         firebase.database().ref('videos').once('value').then(response => {
             let videos = [...response.val()];
             videos.splice(0, 1);
-            for(let i = 0; i < videos.length; i++) {
+            for(let i = videos.length; i >= 0; i--) {
                 if(!videos[i])
                     videos.splice(i,1);
             }
@@ -301,7 +301,11 @@ module.exports = {
 
     getSingleVideo: (req, res, next) => {
         firebase.database().ref('videos').once('value').then(response => {
-            let arr = response.val().slice().splice(1);
+            let arr = response.val().slice();
+            for(let i = arr.length; i >= 0; i--) {
+                if(!arr[i])
+                    arr.splice(i,1);
+            }
             let index = arr.findIndex((val, i, arr) => +val.videoID === +req.params.id)
             res.status(200).json(arr[index]);
         })

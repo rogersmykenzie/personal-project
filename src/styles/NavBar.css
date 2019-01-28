@@ -38,11 +38,10 @@
 .prof-pic {
   width: 30px;
   height: 30px;
-  margin-top: 2vh;
+  margin-top: 1vh;
   align-self: center;
   margin-left: 1vw;
   border-radius: 100vw;
-  margin-right: 10vw;
 }
 
 .prof-pic:hover {
