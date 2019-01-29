@@ -23,6 +23,8 @@ app.use(session( {
         maxAge: 1000 * 60 * 60 * 2
     }
 }));
+//remove this if the website doesnt work and try something else
+app.use( express.static( `${__dirname}/../build` ) );
 
 //REGISTER USER ENDPOINT
 app.post('/auth/register', registerUser)
