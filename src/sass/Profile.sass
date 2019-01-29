@@ -1,3 +1,4 @@
+@import './dimensions.sass'
 .profile-picture-src
     height: 20vw
     width: 20vw
@@ -11,7 +12,7 @@
     margin-left: 1vw
     margin-right: 1vw
     font-family: 'Vesper Libre', serif
-    margin-top: 8.5vh
+    margin-top: $nav-margin
 .profile-head-bio
     width: 67vw
     text-align: left
@@ -63,7 +64,11 @@
     background-position-y: center
     margin-top: 0px
     padding-top: 0px
-    height: 91.5vh
+    height: $background-height
+.logout-container
+    width: 100vw
+    display: flex
+    justify-content: center
 @keyframes onClick
     0%
         transform: scale(.2)

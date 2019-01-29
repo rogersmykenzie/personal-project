@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 import {Typography} from '@material-ui/core'
+import {Redirect} from 'react-router-dom'
+import {toast, ToastContainer} from 'react-toastify';
 
 import '../../styles/ProfileVideoSlot.css'
 
@@ -9,15 +11,18 @@ export default class ProfileVideoSlot extends Component {
     constructor() {
         super();
         this.state = {
-            toggleDeletePrompt: false
+            toggleDeletePrompt: false,
+            videoExists: true
         }
     }
 
     handleDelete = (id) => {
+        toast('Video Deleted')
         axios.delete(`/api/videos/${id}`)
         .then(response => {
-            console.log(response);
+            console.log(response)
         })
+        
     }
 
     render() {

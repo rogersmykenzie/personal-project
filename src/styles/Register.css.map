@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../sass/Register.sass"],"names":[],"mappings":"AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAEJ;EACI;;;AAEJ;EACI;EACA;;;AAEJ;EACI","file":"Register.css"}
+{"version":3,"sourceRoot":"","sources":["../sass/Register.sass"],"names":[],"mappings":"AAEA;EACI;;;AAEJ;EAEI;EACA;EACA;EACA;EACA;;;AAEJ;EACI;EACA;EAEA;EACA;EACA;;;AAEJ;EACI;;;AAEJ;EAEI;;;AAEJ;EACI","file":"Register.css"}

@@ -60,7 +60,7 @@ class Login extends Component {
                         </Button>
                         <br />
                         <Typography>
-                            Don't have an account? <Link to='/register'>Sign Up</Link> today.
+                            Don't have an account? <Link to='/register'><span className='auth-link'>Sign Up</span></Link> today.
                         </Typography>
                     </Paper>
                     {this.state.redirect ? <Redirect to='/profile' /> : null}

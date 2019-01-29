@@ -1,8 +1,13 @@
 const firebase = require('firebase');
 const bcrypt = require('bcryptjs');
-const {config} = require('../resources/firebase-config/firebase-config')
-firebase.initializeApp(config);
-
+firebase.initializeApp({
+    apiKey: process.env.APIKEY,
+    authDomain: process.env.AUTHDOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID
+});
 module.exports = {
     registerUser: async (req, res, next) => {
         let numUsers = null
@@ -126,6 +131,7 @@ module.exports = {
             //     return 0
             // })
             let numVideos = response.val().videos.length
+            // console.log(response.val().videos.length);
             firebase.database().ref(`videos/${numVideos}`).set({
                 title: req.body.title,
                 videoID: numVideos,
@@ -192,7 +198,7 @@ module.exports = {
 
     getVideoRankings: (req, res, next) => {
         firebase.database().ref('videos').once('value').then(response => {
-            let videos = [...response.val()];
+            let videos = response.val();
             videos.splice(0, 1);
             for(let i = videos.length; i >= 0; i--) {
                 if(!videos[i])
@@ -333,5 +339,7 @@ module.exports = {
             videoID: null,
             votes: null
         })
+
+        res.sendStatus(200);
     }
 }

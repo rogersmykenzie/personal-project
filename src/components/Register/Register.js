@@ -81,7 +81,7 @@ class Register extends Component {
                         </Button>
                     <br />
                     <Typography>
-                        Already have an account? <Link to='/login'>Login</Link> to continue
+                        Already have an account? <Link to='/login'><span className='auth-link'>Login</span></Link> to continue
                     </Typography>
                     {this.state.loading ? <Redirect to='/loading' /> : null}
                 </Paper>

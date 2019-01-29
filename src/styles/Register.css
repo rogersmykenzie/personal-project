@@ -1,8 +1,11 @@
+.btn-register, .register-paper, .register-container-1 {
+  display: flex;
+}
+
 .register-container-1 {
   width: 100vw;
   height: 100vh;
   background: #b30000;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -10,7 +13,6 @@
 .register-paper {
   width: 30vw;
   height: 75vh;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -21,7 +23,6 @@
 }
 
 .btn-register {
-  display: flex;
   align-items: center;
 }
 

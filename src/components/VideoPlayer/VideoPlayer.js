@@ -84,7 +84,7 @@ class VideoPlayer extends Component {
                     </div>
                 </div>
                 <br />
-                    {this.props.voteable ? <Fab variant='extended' color='primary' onClick={() => this.handleUpvote()}><i className="fas fa-hand-point-up"></i></Fab> : null}
+                    <div className='upvote-button'>{this.props.voteable ? <Fab variant='extended' color='primary' onClick={() => this.handleUpvote()}><i className="fas fa-hand-point-up"></i></Fab> : null}</div>
                     {this.state.redirect ? <Redirect to='/battle/loading' /> : null}
             </div>
         )

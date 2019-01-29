@@ -1,17 +1,20 @@
 @import './colorSchmes.sass'
+
+%flex
+    display: flex
     
 .register-container-1
+    @extend %flex
     width: 100vw
     height: 100vh
     background: #b30000
-    display: flex
     justify-content: center
     align-items: center
 
 .register-paper
     width: 30vw
     height: 75vh
-    display: flex
+    @extend %flex
     flex-direction: column
     justify-content: center
     align-items: center
@@ -20,13 +23,8 @@
     margin-bottom: 10vh
 
 .btn-register
-    display: flex
+    @extend %flex
     align-items: center
 
 .profile-picture
     margin-left: 6vw
-
-// .register-container-
-//     width: 30vw
-//     height: 60vh
-//     background: pink

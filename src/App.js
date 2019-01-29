@@ -35,10 +35,10 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <div className="App">
+          <div className="App">
             <NavBar />
-                {routes}
-        </div>
+            {routes}
+          </div>
       </MuiThemeProvider>
     );
   }

@@ -7,6 +7,9 @@ import {connect} from 'react-redux';
 import Sidebar from '../ProfileSidebar/ProfileSidebar'
 import {Redirect} from 'react-router-dom'
 import {changeProfilePicture} from '../../ducks/reducer'
+import {ToastContainer, toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css';
+
 
 class Profile extends Component {
     constructor() {
@@ -20,7 +23,7 @@ class Profile extends Component {
             thumbnail: null,
             id: -1,
             tags: '',
-            redirect: false
+            redirect: false,
         }
     }
 
@@ -31,9 +34,9 @@ class Profile extends Component {
             this.setState({profilePicture: response.data.profilePicture, bio: response.data.bio, id: response.data.id});
         })
     }
-
+    
     handleFile = () => {
-
+        toast('Uploading Video')
         axios.get('/api/videos')
         .then(response => {
             let num = response.data + 1;
@@ -56,6 +59,7 @@ class Profile extends Component {
                             axios.post('/api/videos', obj)
                             .then(response => {
                                 console.log(response.status)
+                                toast('Video Successfully Uploaded!')
                             })
                         })
                     })
@@ -70,11 +74,17 @@ class Profile extends Component {
             this.setState({redirect: true})
         })
     }
-    
+
+    onToast = () => {
+        // NotificationManager.success('Testing')
+    }
     render() {
 
         return(
             <div className='profile-background'>
+                {/* <NotificationContainer /> */}
+                <ToastContainer />
+                <Redirect to='/profile' />
                 <div className='main-head-container'>
                     <Sidebar />
                     <img className='profile-picture-src' src={this.props.profilePicture} />
@@ -90,10 +100,12 @@ class Profile extends Component {
                                 <br />
                                 <Button color='primary' variant='contained' onClick={() => this.handleFile()}>Upload</Button>
                             </Paper>
-                            {this.state.redirect ? <Redirect to='/login' /> : null}
+                        {this.state.redirect ? <Redirect to='/login' /> : null}
                     </Paper>
                 </div>
-                    <Button variant='contained' onClick={() => this.handleLogout()}>Logout</Button>
+                <div className='logout-container'>
+                    <Button variant='contained' className='logout-button' onClick={() => this.handleLogout()}>Logout</Button>
+                </div>
             </div>
         )
     }
